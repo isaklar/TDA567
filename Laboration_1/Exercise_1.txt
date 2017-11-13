@@ -1,4 +1,4 @@
-AddWorkingPeriod
+# AddWorkingPeriod
 requires:
   employee is a non-null string
 ensures:
@@ -19,36 +19,44 @@ Input space:
 starttime: < 0, > endtime	 = false
 Endtime: >= size 			     = false
 
-	else
-
-starttime:
 
 Partition #1: starttime < 0
 	test_addWorkingPeriod_part1:
-		input: employee: ”gabbe”, starttime: -1, endtime: size
+		input: addWorkingPeriod("employee", -1, size)
 		expected: false
+      comment:
 
 Partition #2: endtime >= size
 	test_addWorkingPeriod_part2:
-		input: employee: ”gabbe”, starttime: 1, endstart: size+1
+		input: addWorkingPeriod("employee", 1, size+1)
 		expected: false
+      comment:
 
 Partition #3: starttime > endtime
 	test_addWorkingPeriod_part3:
-		input: addWorkingPeriod(”gabbe”, size, size-1)
+		input: addWorkingPeriod(employee, size, size-1)
 		expected: false
+      comment:
 
 Partition #4:  workingEmployee == requiredNumber
 	test_addWorkingPeriod_part4:
-		input: addWorkingPeriod(”gabbe”, size+1, size)
+		input: addWorkingPeriod(employee, size+1, size)
 		expected: false
+      comment:
 
 Partition #5:  any workingEmployee == employee
 	test_addWorkingPeriod_part5:
-		input: addWorkingPeriod(”gabbe”, size, size-1)
+		input: addWorkingPeriod(employee, size+1, size)
 		expected: false
+    comment:
 
-Partition #6 for(int I = 0; starttime < i < endtime; i++) do
+Partition #6: for(int i = 0; starttime < i < endtime; i++), check if workingEmployees contain a string equal to employee.
 	test_addWorkingPeriod_part6:
-	input: addWorkingPeriod(”gabby”, size, size+1)
-	expected:
+	input:
+  workingEmployees(starttime, endtime)(1)
+  addWorkingPeriod("employee", starttime, endtime)
+  workingEmployee(starttime, endtime)(2)
+	expected: true
+    comment: 
+
+# workingEmployee
