@@ -1,0 +1,54 @@
+AddWorkingPeriod
+requires:
+  employee is a non-null string
+ensures:
+  if starttime < 0 or endtime >= size or starttime > endtime then
+    returns false and the schedule is unchanged
+  otherwise
+    if for any hour in the interval starttime to endtime the length of workingEmployees is equal to requiredNumber then
+      returns false and the schedule is unchanged
+    otherwise
+      if for any hour in the interval starttime to endtime there is a string in workingEmployees which equal employee then
+        returns false and the schedule is unchanged
+      otherwise
+        returns true,
+        for i between starttime and endtime, workingEmployees contain a string equal to employee and
+        the rest of the schedule is unchanged
+
+Input space:
+starttime: < 0, > endtime	 = false
+Endtime: >= size 			     = false
+
+	else
+
+starttime:
+
+Partition #1: starttime < 0
+	test_addWorkingPeriod_part1:
+		input: employee: ”gabbe”, starttime: -1, endtime: size
+		expected: false
+
+Partition #2: endtime >= size
+	test_addWorkingPeriod_part2:
+		input: employee: ”gabbe”, starttime: 1, endstart: size+1
+		expected: false
+
+Partition #3: starttime > endtime
+	test_addWorkingPeriod_part3:
+		input: addWorkingPeriod(”gabbe”, size, size-1)
+		expected: false
+
+Partition #4:  workingEmployee == requiredNumber
+	test_addWorkingPeriod_part4:
+		input: addWorkingPeriod(”gabbe”, size+1, size)
+		expected: false
+
+Partition #5:  any workingEmployee == employee
+	test_addWorkingPeriod_part5:
+		input: addWorkingPeriod(”gabbe”, size, size-1)
+		expected: false
+
+Partition #6 for(int I = 0; starttime < i < endtime; i++) do
+	test_addWorkingPeriod_part6:
+	input: addWorkingPeriod(”gabby”, size, size+1)
+	expected:
