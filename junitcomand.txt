@@ -1,2 +1,8 @@
-java -cp .:junit-4.12.jar:hamcrest-core-1.3.jar org.junit.runner.JUnitCore name
-javac -cp .:junit-4.12.jar:hamcrest-core-1.3.jar name.java
+# BLACKBOX
+java -cp .:../junit-4.12.jar:WorkSchedule.jar:../hamcrest-core-1.3.jar org.junit.runner.JUnitCore Lab1BlackBox
+javac -cp .:../junit-4.12.jar:../hamcrest-core-1.3.jar:WorkSchedule.jar Lab1BlackBox.java
+
+
+# WHITEBOX
+java -cp .:../junit-4.12.jar:WorkSchedule.jar:../hamcrest-core-1.3.jar org.junit.runner.JUnitCore Lab1WhiteBox
+javac -cp .:../junit-4.12.jar:../hamcrest-core-1.3.jar:WorkSchedule.jar Lab1WhiteBox.java

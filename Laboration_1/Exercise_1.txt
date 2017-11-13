@@ -22,41 +22,49 @@ Endtime: >= size 			     = false
 
 Partition #1: starttime < 0
 	test_addWorkingPeriod_part1:
-		input: addWorkingPeriod("employee", -1, size)
+		input:
+      addWorkingPeriod("employee", -1, size)
 		expected: false
       comment:
 
 Partition #2: endtime >= size
 	test_addWorkingPeriod_part2:
-		input: addWorkingPeriod("employee", 1, size+1)
+		input:
+      addWorkingPeriod("employee", 1, size+1)
 		expected: false
       comment:
 
 Partition #3: starttime > endtime
 	test_addWorkingPeriod_part3:
-		input: addWorkingPeriod(employee, size, size-1)
+		input:
+      addWorkingPeriod(employee, size, size-1)
 		expected: false
       comment:
 
-Partition #4:  workingEmployee == requiredNumber
+Partition #4:  workingEmployee >= requiredNumber
 	test_addWorkingPeriod_part4:
-		input: addWorkingPeriod(employee, size+1, size)
+		input:
+      setRequiredNumber(1, starttime, endtime)
+      addWorkingPeriod("employee1", starttime, endtime)
+      addWorkingPeriod("employee2", starttime, endtime)
 		expected: false
       comment:
 
 Partition #5:  any workingEmployee == employee
 	test_addWorkingPeriod_part5:
-		input: addWorkingPeriod(employee, size+1, size)
+		input:
+      addWorkingPeriod(employee1, starttime, endtime)
+      addWorkingPeriod(employee2, starttime, endtime)
 		expected: false
-    comment:
+      comment:
 
 Partition #6: for(int i = 0; starttime < i < endtime; i++), check if workingEmployees contain a string equal to employee.
 	test_addWorkingPeriod_part6:
 	input:
-  workingEmployees(starttime, endtime)(1)
-  addWorkingPeriod("employee", starttime, endtime)
-  workingEmployee(starttime, endtime)(2)
+    workingEmployees(starttime, endtime)(1)
+    addWorkingPeriod("employee", starttime, endtime)
+    workingEmployee(starttime, endtime)(2)
 	expected: true
-    comment: 
+    comment:
 
 # workingEmployee
