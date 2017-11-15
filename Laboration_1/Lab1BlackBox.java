@@ -1,10 +1,15 @@
 import org.junit.Test;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertArrayEquals;
 import java.util.Arrays;
 
 public class Lab1BlackBox{
   private WorkSchedule schedule;
+
+  /* ####################################################################
+                            EXERCISE A
+   #################################################################### */
 
   // starttime < 0
   @Test
@@ -56,5 +61,36 @@ public class Lab1BlackBox{
     schedule. addWorkingPeriod("employee", size, size);
     boolean result = schedule.addWorkingPeriod("employee", size, size);
     assertFalse(result);
+  }
+
+  // when test goes through
+  // TODO
+  @Test
+  public void testWhenSuccessA(){
+    int size = 10;
+  }
+
+  /* ####################################################################
+                            EXERCISE B
+   #################################################################### */
+
+  // this test should return an empty list
+  // starttime <= endtime
+  @Test
+  public void testStartLessThanEnd() {
+    int size = 10;
+		schedule = new WorkSchedule(size);
+		schedule.setRequiredNumber(1, size, size+1);
+		schedule.addWorkingPeriod("employee", size, size+1);
+    // but ends up still returning all entries within the interval
+    // even though we set starttime > endtime which means WE HAVE A BUG LADIES AND GENTLEMEN
+		assertTrue(schedule.workingEmployees(size+1, size).length == 0);
+	}
+
+  // when test goes through
+  // TODO
+  @Test
+  public void testWhenSuccessB(){
+    int size = 10;
   }
 }
