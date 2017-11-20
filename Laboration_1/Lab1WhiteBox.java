@@ -177,4 +177,35 @@ public class Lab1WhiteBox{
      /* ####################################################################
                                EXERCISE D
       #################################################################### */
+
+      // Statement coverage and branch coverage
+
+      // test if no arith triple
+      @Test
+      public void testNoArithTriple(){
+        set.insert(100);
+		    set.insert(44);
+		    set.insert(2);
+        assertFalse(set.containsArithTriple());
+      }
+
+      // test if arith triple
+      @Test
+      public void testArithTriple(){
+        set.insert(1);
+        set.insert(2);
+        set.insert(3);
+        assertTrue(set.containsArithTriple());
+      }
+
+      // test if arith triple when other elements in set.
+      @Test
+      public void testArithTrippleMessy(){
+        set.insert(-1);
+        set.insert(-6);
+        set.insert(2);
+        set.insert(0);
+        set.insert(1);
+        assertTrue(set.containsArithTriple());
+      }
 }

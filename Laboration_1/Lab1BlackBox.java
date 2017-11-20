@@ -102,11 +102,11 @@ public class Lab1BlackBox{
   public void testStartLessThanEnd() {
     int size = 10;
 		schedule = new WorkSchedule(size);
-		schedule.setRequiredNumber(1, size, size+1);
-		schedule.addWorkingPeriod("employee", size, size+1);
+		schedule.setRequiredNumber(2, 0, 9);
+		schedule.addWorkingPeriod("employee", 0, 9);
     // but ends up still returning all entries within the interval
     // even though we set starttime > endtime which means WE HAVE A BUG LADIES AND GENTLEMEN
-		assertTrue(schedule.workingEmployees(size+1, size).length == 0);
+		assertTrue(schedule.workingEmployees(9, 0).length == 0);
 	}
 
   // when test goes through
