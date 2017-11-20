@@ -138,15 +138,4 @@ public class Lab1WhiteBox{
         set.insert(3);
         assertTrue(set.containsArithTriple());
       }
-
-      // test if arith triple when other elements in set.
-      @Test
-      public void testArithTrippleMessy(){
-        set.insert(-1);
-        set.insert(-6);
-        set.insert(2);
-        set.insert(0);
-        set.insert(1);
-        assertTrue(set.containsArithTriple());
-      }
 }
