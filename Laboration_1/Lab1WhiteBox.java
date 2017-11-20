@@ -15,25 +15,7 @@ public class Lab1WhiteBox{
                             EXERCISE A
    #################################################################### */
 
-   // Statement coverage
-
-   // Tests insert when set is empty.
-   @Test
-   public void testEmptySet(){
-     set.insert(1);
-     assertTrue(set.toArray().length == 1);
-     assertTrue(set.toArray()[0] == 1);
-   }
-
-   // Tests inert when set is not empty.
-   @Test
-   public void testNonEmptySet(){
-     set.insert(2);
-     set.insert(1);
-     assertTrue(set.toArray().length == 2);
-     assertTrue(set.toArray()[0] == 1);
-     assertTrue(set.toArray()[1] == 2);
-   }
+   // Statement coverage +  Branch coverage
 
    // Tests insert when number already exist
    @Test
@@ -42,8 +24,6 @@ public class Lab1WhiteBox{
      set.insert(1);
      assertTrue(set.toArray().length == 1);
    }
-
-   // Branch coverage
 
    // Test insert when ascending order
    @Test
