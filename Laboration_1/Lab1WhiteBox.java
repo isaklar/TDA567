@@ -97,13 +97,6 @@ public class Lab1WhiteBox{
        assertTrue(set.toArray().length == 0);
      }
 
-     // test when both are empty
-     @Test
-     public void testEmpty(){
-       set.section(removeSet);
-       assertTrue(set.toArray().length == 0);
-     }
-
      // test to see if section can remove unspecified values
      @Test
      public void testWrongRemove(){
@@ -119,32 +112,6 @@ public class Lab1WhiteBox{
        set.insert(2);
        removeSet.insert(1);
        set.section(removeSet);
-       assertTrue(set.toArray().length == 1);
-     }
-
-     // test to see if one is bigger than the other
-     @Test
-     public void testSetLargerThanRemoveSet(){
-       set.insert(1);
-       set.insert(2);
-       set.insert(3);
-       removeSet.insert(1);
-       removeSet.insert(2);
-       set.section(removeSet);
-       assertTrue(set.member(3));
-       assertTrue(set.toArray().length == 1);
-     }
-
-     // test to see if one is bigger than the other
-     @Test
-     public void testRemoveLargerThanSet(){
-       set.insert(1);
-       set.insert(2);
-       removeSet.insert(1);
-       removeSet.insert(3);
-       removeSet.insert(4);
-       set.section(removeSet);
-       assertTrue(set.member(2));
        assertTrue(set.toArray().length == 1);
      }
 
