@@ -96,20 +96,20 @@ public class Lab1BlackBox{
                             EXERCISE B
    #################################################################### */
 
-  // this test should return an empty list
-  // starttime <= endtime
+  // starttime > endtime
   @Test
   public void testStartLessThanEnd() {
     int size = 10;
 		schedule = new WorkSchedule(size);
 		schedule.setRequiredNumber(2, 0, 9);
 		schedule.addWorkingPeriod("employee", 0, 9);
-    // but ends up still returning all entries within the interval
-    // even though we set starttime > endtime which means WE HAVE A BUG LADIES AND GENTLEMEN
+    // tests what happends if we set starttime > Endtime
+    // expect: to return empty
+    // but it doesnt which means we have a BUG.
 		assertTrue(schedule.workingEmployees(9, 0).length == 0);
 	}
 
-  // when test goes through
+  // starttime <= endtime
   @Test
   public void testWhenSuccessB(){
     int size = 10;
