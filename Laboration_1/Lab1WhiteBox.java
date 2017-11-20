@@ -57,12 +57,6 @@ public class Lab1WhiteBox{
 
     // Statement coverage and Branch coverage
 
-    // Test that checks if no members exists
-    @Test
-    public void testNoMembers(){
-      assertFalse(set.member(1));
-    }
-
     // Test that checks if a member exist
     @Test
     public void testExistingMembers(){
