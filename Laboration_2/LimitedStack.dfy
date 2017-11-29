@@ -127,7 +127,7 @@ class LimitedStack{
       }
 */
 
-/*
+
 
 // When you are finished,  all the below assertions should be provable.
 // Feel free to add extra ones as well.
@@ -148,7 +148,7 @@ class LimitedStack{
            s.Push(9);
            assert s.Full();
 
-           var e2 := s.Pop();
+           /*var e2 := s.Pop();
            assert e2 == 9 && !s.Full();
            assert s.arr[0] == 5;
 
@@ -157,8 +157,8 @@ class LimitedStack{
 
            var e3 := s.Peek();
            assert e3 == 99;
-           assert s.arr[0] == 32;
+           assert s.arr[0] == 32;*/
 
        }
-*/
+
 }
