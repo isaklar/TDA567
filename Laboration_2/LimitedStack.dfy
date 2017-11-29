@@ -7,7 +7,7 @@ class LimitedStack{
 
       // This predicate express a class invariant: All objects of this calls should satisfy this.
       predicate Valid()
-      reads this.cpacity, this.arr, this.top;
+      reads this;
       {
         /*
         * arr is not null
@@ -16,29 +16,30 @@ class LimitedStack{
         * top should be att leas -1 and strictly less than capacity
         */
 
-        arr != null && capacity > 0 && capacity == arr.Length && top >= -1 && top < capacity;
+        arr != null && capacity > 0 && capacity == arr.Length && top >= -1 && top < capacity
       }
 
       predicate Empty()
-      reads this.top;
+      reads this;
       {
         /*
         * top is -1
         */
-        top == -1;
+        top == -1
       }
 
       predicate Full()
-      reads this.top, this.cpacity;
+      reads this;
+      //reads this.top, this.capacity;
       {
         /*
         * top is equal to cpacity -1
         */
-        top == cpacity -1;
+        top == capacity -1
       }
 
       method Init(c : int)
-      modifies this.cpacity, this.arr, this.top;
+      modifies this;
       requires c > 0;
 
       ensures fresh(arr); // ensures arr is a newly created object.
@@ -49,15 +50,6 @@ class LimitedStack{
         arr := new int[c];
         top := -1;
       }
-
-
-/*
-      method isEmpty() returns (res : bool)
-
-      {
-
-      }
-*/
 
 /*
       // Returns the top element of the stack, without removing it.
