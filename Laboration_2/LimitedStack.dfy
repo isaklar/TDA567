@@ -36,19 +36,20 @@ class LimitedStack{
         */
         top == cpacity -1;
       }
- /*
+
       method Init(c : int)
-      modifies this;
-      requires ?
+      modifies this.cpacity, this.arr, this.top;
+      requires c > 0;
 
       ensures fresh(arr); // ensures arr is a newly created object.
-      // Additional post-condition to be given here!
+      ensures Valid();
+      ensures Empty();
       {
         capacity := c;
         arr := new int[c];
         top := -1;
       }
-*/
+
 
 /*
       method isEmpty() returns (res : bool)
