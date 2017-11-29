@@ -13,7 +13,7 @@ class LimitedStack{
         * arr is not null
         * cpacity must be positiv
         * capacity and Length of arr must agree
-        * top should be att leas -1 and strictly less than capacity
+        * top should be att least -1 and strictly less than capacity
         */
 
         arr != null && capacity > 0 && capacity == arr.Length && top >= -1 && top < capacity
@@ -51,31 +51,52 @@ class LimitedStack{
         top := -1;
       }
 
-/*
+
+      method isEmpty() returns (res : bool)
+      requires Valid();
+      ensures top == -1 ==> Empty();
+      {
+        if(top == -1){
+          res := true;
+        }else{
+          res := false;
+        }
+      }
+
+
       // Returns the top element of the stack, without removing it.
       method Peek() returns (elem : int)
-
+      requires Valid();
+      requires !Empty();
+      ensures elem == arr[top];
       {
-
+        elem := arr[top];
       }
-*/
 
-/*
+
       // Pushed an element to the top of a (non full) stack.
       method Push(elem : int)
-
+      modifies this`top, this.arr;
+      requires Valid();
+      requires !Full();
+      ensures top == old(top)+1;
+      ensures elem == arr[top];
       {
-
+        top := top +1;
+        arr[top] := elem;
       }
-*/
+
       // Pops the top element off the stack.
-/*
       method Pop() returns (elem : int)
-
+      modifies this`top;
+      requires Valid();
+      requires !Empty();
+      ensures top == old(top)-1;
+      ensures elem == arr[old(top)];
       {
-
+        elem := arr[top];
+        top := top -1;
       }
- */
 
       method Shift()
       requires Valid() && !Empty();
