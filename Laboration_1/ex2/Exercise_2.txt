@@ -1,0 +1,126 @@
+/* ####################################################################
+                          EXERCISE A
+ #################################################################### */
+
+# Insert
+
+Partition #1: Already in the set
+  test_insert_part1:
+    input:
+      insert(1)
+      insert(1)
+    expected: length = 1
+      comment: FAILED, but WORKS after we fixed the bugs in Set.java
+
+Partition #2: Ascending
+  test_insert_part2:
+    input:
+      insert(1)
+      insert(2)
+    expected:
+      length = 2
+      [0] = 1
+      [1] = 2
+    comment: FAILED, but WORKS after we fixed the bugs in Set.java
+
+Partition #3: Descending
+  test_insert_part3:
+    input:
+      insert(2)
+      insert(1)
+    expected:
+      length = 2
+      [0] = 1
+      [1] = 2
+    comment: Works fine.
+
+/* ####################################################################
+                          EXERCISE B
+ #################################################################### */
+
+# Member
+
+Partition #1: Existing members
+  test_member_part1:
+    input:
+      insert(1)
+      member(1)
+    expected: true
+    comment: Works fine.
+
+Partition #2: Lower number member existing
+  test_member_part2:
+    input:
+      insert(2)
+      insert(3)
+      insert(4)
+      member(1)
+    expected: false
+    comment: Works fine.
+
+Partition #3: Higher number member existing
+  test_member_part3:
+    input:
+      insert(2)
+      insert(3)
+      insert(4)
+      member(5)
+    expected: false
+    comment: Works fine.
+
+/* ####################################################################
+                        EXERCISE C
+#################################################################### */
+
+# Section
+
+Partition #1: Test if section works
+  test_section_part1:
+    input:
+      set.insert(1)
+      removeSet.insert(1)
+      set.section(removeSet)
+    expected: true
+    comment: Works fine.
+
+Partition #2: Test if section can remove unspecified values
+  test_section_part2:
+  input:
+    set.insert(1)
+    removeSet.insert(2)
+    set.section(removeSet)
+  expected: false
+  comment: Works fine.
+
+Partition #3: Test if section can remove the unspecified values, reverse
+  test_section_part3:
+  input:
+    set.insert(2)
+    removeSet.insert(1)
+    set.section(removeSet)
+    expected: false
+    comment: Works fine.
+
+/* ####################################################################
+                        EXERCISE C
+#################################################################### */
+
+# containsArithTriple
+
+Partition #1: Test if no arith triple
+  test_containsArithTriple_part1:
+    input:
+      insert(100)
+      insert(44)
+      insert(2)
+    expected: false
+    comment: FAILED, but WORKS after we fixed the bugs in Set.java
+
+Partition #2: Test if arith triple
+  test_containsArithTriple_part2:
+    input:
+      insert(1)
+      insert(2)
+      insert(3)
+    expected: true
+    comment: Works fine

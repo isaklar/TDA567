@@ -19,11 +19,11 @@ ensures:
         for i between starttime and endtime, workingEmployees contain a string equal to employee and
         the rest of the schedule is unchanged
 
-Input space:
-starttime: < 0, > endtime	 = false
-Endtime: >= size 			     = false
+# INPUT SPACE
+All values for starttime and endtime
+All non-null strings for employee
 
-
+# PARTITIONS
 Partition #1: starttime < 0
 	test_addWorkingPeriod_part1:
 		input:
@@ -76,7 +76,20 @@ Partition #6: for(int i = 0; starttime < i < endtime; i++), check if workingEmpl
  #################################################################### */
 
 # workingEmployees
+requires:
+  starttime >= 0 and endtime < size
+ensures:
+  if starttime <= endtime then
+    returns an array with distinct strings -- a string appears in the return array if and only if
+    it appears in the workingEmployees of at least one hour in the interval starttime to endtime
+  otherwise
+    returns an empty array
+  and in either case the schedule is unchanged
 
+# INPUTSPACE
+All values for starttime and endtime so starttime >= 0 and endtime < size
+
+# PARITIONS
 Partition #1: starttime > endtime
 	test_workingEmployees_part1:
 	input:

@@ -1,0 +1,24 @@
+/* ####################################################################
+                          EXERCISE 3 - DEBUGGING
+ #################################################################### */
+
+# The bug
+It would only find the value in the array if the value was 4, but was because
+the if-statement were incorrect and they changed right and left value at wrong state.
+So we only changed it to:
+
+  if (array[index] < value)
+    left = index + 1;
+  else
+    right = index - 1;
+
+instead of:
+
+  if (array[index] < value)
+    right = index - 1;
+  else
+    left = index + 1;
+
+# the debugging
+The bug was pretty easy to spot. We did several tests with different numbers and came to the conclusion that the bug where somewhere
+in the if-statements. While checking the code we almost immediately found the bug. 
