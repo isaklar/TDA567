@@ -7,21 +7,34 @@ class LimitedStack{
 
       // This predicate express a class invariant: All objects of this calls should satisfy this.
       predicate Valid()
-      reads ?;
+      reads this.cpacity, this.arr, this.top;
       {
-        
+        /*
+        * arr is not null
+        * cpacity must be positiv
+        * capacity and Length of arr must agree
+        * top should be att leas -1 and strictly less than capacity
+        */
+
+        arr != null && capacity > 0 && capacity == arr.Length && top >= -1 && top < capacity;
       }
 
       predicate Empty()
-      reads this;
+      reads this.top;
       {
-
+        /*
+        * top is -1
+        */
+        top == -1;
       }
 
       predicate Full()
-      reads this;
+      reads this.top, this.cpacity;
       {
-
+        /*
+        * top is equal to cpacity -1
+        */
+        top == cpacity -1;
       }
  /*
       method Init(c : int)
