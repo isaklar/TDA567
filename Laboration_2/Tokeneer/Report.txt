@@ -1,0 +1,18 @@
+# Tokeneer
+We made different classes based on the different elements of the system as you said in the lab-description.
+
+- Tokens delivered to users. Tokens must store their user's identifier and a security clearance. Tokens may be invalidated.
+- ID stations corresponding to a certain door, with a given security level. The state of the door and the alarm can be simply represented by booleans.
+- The enrollment station, which must keep track of the user who currently have a token
+
+So we made 4 different classes. The only difference between the description above is that we made one more class for handling users.
+ - User: User holds their own token
+ - Token: has all the information about the user; fingerprint, valid(which says if user is valid.) and a clearanceLevel which specifies what doors a user has has access through.
+ - IdStation: Basically doors, and since token has different clearanceLevels to doors, this class has a differnet levels between 1 to 3, where 1 is low level and 3 is high level.
+ - Enrollment: Keep tracks of the user who currently have a token
+
+ If a user is used and has a clearanceLevel lower than what he/she has access to, it will not open. But if a user is misusing their token(i.e wrong person uses a token) a alarm will go off.
+ A user can only come through a door if token is valid, fingerprint is valid and if the user has clearance access to that door. Else he/she will always be denied.
+
+ EnrollmentStation has a method called enroll, which is used to add Users into the existing system. It will only register users that are not already in the system. And will add their fingerprint and clearance level.
+ Both fingerprint and clearance Level will be stored in a token that now belongs to the newly registered user. 
