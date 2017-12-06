@@ -45,6 +45,7 @@ class LimitedStack{
       ensures fresh(arr); // ensures arr is a newly created object.
       ensures Valid();
       ensures Empty();
+      ensures this.capacity == c;
       {
         capacity := c;
         arr := new int[c];
@@ -69,6 +70,9 @@ class LimitedStack{
       requires Valid();
       requires !Empty();
       ensures elem == arr[top];
+      ensures Valid();
+      ensures !Empty();
+      ensures forall i:int:: 0<= i <= top ==> arr[i] == old(arr[i]);
       {
         elem := arr[top];
       }
@@ -79,8 +83,10 @@ class LimitedStack{
       modifies this`top, this.arr;
       requires Valid();
       requires !Full();
+      ensures Valid();
       ensures top == old(top)+1;
       ensures elem == arr[top];
+      ensures forall i:int :: 0 <= i < top ==> arr[i] == old(arr[i]);
       {
         top := top +1;
         arr[top] := elem;
@@ -93,6 +99,7 @@ class LimitedStack{
       requires !Empty();
       ensures top == old(top)-1;
       ensures elem == arr[old(top)];
+      ensures forall i:int :: 0<= i < top ==> arr[i] == old(arr[i]);
       {
         elem := arr[top];
         top := top -1;
@@ -118,14 +125,26 @@ class LimitedStack{
         top := top - 1;
       }
 
-/*
+
       //Push onto full stack, oldest element is discarded.
       method Push2(elem : int)
+      modifies this.arr, this`top;
+      requires Valid();
+      ensures Valid();
+      ensures !Empty();
 
+      ensures arr[top] == elem;
+      ensures old(top) == capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i+1]);
+      ensures old(top) != capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i]);
       {
 
+        if(top == capacity -1){
+          Shift();
+        }
+
+        Push(elem);
       }
-*/
+
 
 
 
@@ -148,7 +167,7 @@ class LimitedStack{
            s.Push(9);
            assert s.Full();
 
-           /*var e2 := s.Pop();
+           var e2 := s.Pop();
            assert e2 == 9 && !s.Full();
            assert s.arr[0] == 5;
 
@@ -157,7 +176,7 @@ class LimitedStack{
 
            var e3 := s.Peek();
            assert e3 == 99;
-           assert s.arr[0] == 32;*/
+           assert s.arr[0] == 32;
 
        }
 
