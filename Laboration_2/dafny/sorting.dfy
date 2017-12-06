@@ -42,7 +42,6 @@ class sorting{
   }
 
 
-
   /*
    * Lemma "if a sequence is sorted, then it is sorted' "
    * @param seq<int>: sequence of integers
@@ -56,7 +55,7 @@ class sorting{
   {}
 
   /*
-   * Lemma "if a sequence is sorted, then it is sorted' "
+   * Lemma "if a sequence is sorted', then it is sorted "
    * @param seq<int>: sequence of integers
    * @param min:int: min value in the sequence
    * @param max:int: min value in the sequence

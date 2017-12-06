@@ -33,7 +33,7 @@ class LimitedStack{
       //reads this.top, this.capacity;
       {
         /*
-        * top is equal to cpacity -1
+        * top is equal to capacity -1
         */
         top == capacity -1
       }
@@ -85,7 +85,7 @@ class LimitedStack{
       requires !Full();
       ensures Valid();
       ensures top == old(top)+1;
-      ensures elem == arr[top];
+      ensures arr[top] == elem;
       ensures forall i:int :: 0 <= i < top ==> arr[i] == old(arr[i]);
       {
         top := top +1;
@@ -132,16 +132,14 @@ class LimitedStack{
       requires Valid();
       ensures Valid();
       ensures !Empty();
-
+      ensures old(Full()) ==> top == old(top);
       ensures arr[top] == elem;
       ensures old(top) == capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i+1]);
       ensures old(top) != capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i]);
       {
-
         if(top == capacity -1){
           Shift();
         }
-
         Push(elem);
       }
 

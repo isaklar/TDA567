@@ -1,0 +1,24 @@
+/* ####################################################################
+													EXERCISE 2
+#################################################################### */
+ # Write a proof of your two lemmas on paper. Which of your two definitions is the most convenient?
+
+Answer:
+
+
+
+
+
+ /* ####################################################################
+ 													EXERCISE 3
+ #################################################################### */
+ # Explain the meaning of the predicate p below:
+
+  predicate p(a : seq<int>, b : seq<int>)
+  {
+    multiset(a) == multiset(b)
+  }
+
+Answer:
+"Multisets are like sets in almost every way, except that they keep track of how many copies of each element they have."
+Basically what this predicate does is to see if a and b contains the same values and the same amount of copies of values.

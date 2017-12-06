@@ -128,12 +128,14 @@ class LimitedStack{
 
       //Push onto full stack, oldest element is discarded.
       method Push2(elem : int)
-	    modifies this.arr, this`top;
-      requires Valid() && Full();
-      ensures Valid() && Full();
+      modifies this.arr, this`top;
+      requires Valid();
+      ensures Valid();
+      ensures !Empty();
+      ensures old(Full()) ==> top == old(top);
       ensures arr[top] == elem;
-	    ensures arr.Length == old(arr).Length;
-      ensures forall i :: 0 <= i < capacity - 1 ==> arr[i] == old(arr[i+1]);
+      ensures old(top) == capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i+1]);
+      ensures old(top) != capacity -1  ==> forall i:int:: 0<= i < top ==> arr[i] == old(arr[i]);
       {
         if(top == capacity -1){
           Shift();
