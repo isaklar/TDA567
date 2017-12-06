@@ -1,26 +1,13 @@
 class sorting{
 
-  /*
-   * Predicate sorted
-   * @param seq<int>: sequence of integers
-   */
-  predicate sorted(a : seq<int>)
+  predicate sorted(nums : seq<int>)
   {
-    forall i :: 0 <= i < |a| ==> forall j :: i <= j < |a| ==> a[i] <= a[j]
-    // dis might work as well
-    // forall i, k :: 0 <= i < k < |a| ==> a[i] <= a[k]
+  	forall i : int :: 0 <= i < |nums| - 1 ==> nums[i] <= nums[i + 1]
   }
 
-  /*
-   * Predicate sorted'
-   * @param seq<int>: sequence of integers
-   */
-  predicate sorted'(a : seq<int>, min:int, max:int)
-  requires 0 <= min <= max <= |a|;
+  predicate sorted'(nums : seq<int>)
   {
-    forall i :: min <= i < max ==> forall j :: i <= j < |a| ==> a[i] <= a[j]
-    // dis might work as well
-    // forall i, k :: min <= i < k < max ==> a[i] <= a[k]
+  	!(exists i : int :: 0 <= i < |nums| - 1 && nums[i] > nums[i + 1])
   }
 
   predicate p(a : seq<int>, b : seq<int>)
@@ -48,30 +35,30 @@ class sorting{
    * @param min:int: min value in the sequence
    * @param max:int: min value in the sequence
    */
-  lemma sorted1AndSorted2(a : seq<int>, min:int, max:int)
-  requires 0 <= min <= max <= |a|
+  lemma sorted1AndSorted2(a : seq<int>)
+  //requires 0 <= min <= max <= |a|
   requires sorted(a)
-  ensures sorted'(a, min, max)
+  ensures sorted'(a)
   {}
 
   /*
-   * Lemma "if a sequence is sorted, then it is sorted' "
+   * Lemma "if a sequence is sorted', then it is sorted "
    * @param seq<int>: sequence of integers
    * @param min:int: min value in the sequence
    * @param max:int: min value in the sequence
    */
-  lemma sorted2AndSorted1(a : seq<int>, min:int, max:int)
-  requires 0 <= min <= max <= |a|
-  requires sorted'(a, min, max)
-  ensures sorted(a[min .. max])
+  lemma sorted2AndSorted1(a : seq<int>)
+  //requires 0 <= min <= max <= |a|
+  requires sorted'(a)
+  ensures sorted(a)
   {}
 
   // Exercise 4a
   method sortArray(a : array<int>)
   modifies a;
-  requires a != null && sorted'(a[..], 0, a.Length);
+  requires a != null && sorted'(a[..]);
   requires a.Length > 0
-  ensures sorted'(a[..], 0, a.Length);
+  ensures sorted'(a[..]);
   ensures p(a[..], old(a[..]))
   {
   }
